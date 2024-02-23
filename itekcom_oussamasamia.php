@@ -28,6 +28,11 @@ if (!defined('_PS_VERSION_')) {
     exit;
 }
 
+$autoloadPath = __DIR__ . '/vendor/autoload.php';
+if (file_exists($autoloadPath)) {
+    require_once $autoloadPath;
+}
+
 class Itekcom_oussamasamia extends Module
 {
     protected $config_form = false;
@@ -40,7 +45,7 @@ class Itekcom_oussamasamia extends Module
         $this->author = 'Oussama SAMIA';
         $this->need_instance = 1;
 
-        /**
+        /***
          * Set $this->bootstrap to true if your module is compliant with bootstrap (PrestaShop 1.6)
          */
         $this->bootstrap = true;
