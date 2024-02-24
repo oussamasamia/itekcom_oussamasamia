@@ -36,7 +36,7 @@ class  CheckoutHealthStep extends AbstractCheckoutStep
     {
 
         // while a form is open, do not go to next step
-        $this->setCurrent(true);
+        //$this->setCurrent(true);
 
         $this->setTitle(
             $this->getTranslator()->trans(
