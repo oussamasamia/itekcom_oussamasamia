@@ -34,7 +34,9 @@ class  CheckoutHealthStep extends AbstractCheckoutStep
 
     public function handleRequest(array $requestParameters = [])
     {
-        // TODO: Implement handleRequest() method.
+
+        // while a form is open, do not go to next step
+        $this->setCurrent(true);
 
         $this->setTitle(
             $this->getTranslator()->trans(
