@@ -6,6 +6,7 @@ namespace Itekcom_Oussamasamia\Checkout;
 use AbstractCheckoutStep;
 use Context;
 use CustomerHealthFormCore;
+use Hook;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class  CheckoutHealthStep extends AbstractCheckoutStep
@@ -20,10 +21,11 @@ class  CheckoutHealthStep extends AbstractCheckoutStep
      * @param CustomerHealthFormCore $healthForm
      */
     public function __construct(
-        Context $context,
-        TranslatorInterface $translator,
+        Context                $context,
+        TranslatorInterface    $translator,
         CustomerHealthFormCore $healthForm = null
-    ) {
+    )
+    {
 
         parent::__construct($context, $translator);
         $this->healthForm = $healthForm;
@@ -33,6 +35,14 @@ class  CheckoutHealthStep extends AbstractCheckoutStep
     public function handleRequest(array $requestParameters = [])
     {
         // TODO: Implement handleRequest() method.
+
+        $this->setTitle(
+            $this->getTranslator()->trans(
+                'Health Information',
+                [],
+                'Modules.Itekcom_Oussamasamia.Healthinformation'
+            )
+        );
     }
 
     public function render(array $extraParams = [])
