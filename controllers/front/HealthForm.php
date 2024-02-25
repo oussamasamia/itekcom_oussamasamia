@@ -35,6 +35,15 @@ class Itekcom_OussamasamiaHealthFormModuleFrontController extends ModuleFrontCon
 
         $ok = $customer->update();
 
-        return $ok;
+        // Redirect back to the checkout step
+        $checkoutStepUrl = $this->context->link->getPageLink(
+            'order',
+            true,
+            null,
+            array('submitCustomerHealth' => 1)
+        );
+
+        // Redirect back to the checkout step
+        Tools::redirect($checkoutStepUrl);
     }
 }

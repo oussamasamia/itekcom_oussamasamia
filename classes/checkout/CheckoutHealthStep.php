@@ -38,6 +38,13 @@ class  CheckoutHealthStep extends AbstractCheckoutStep
         // while a form is open, do not go to next step
         //$this->setCurrent(true);
 
+
+        if (isset($requestParameters['submitCustomerHealth']) && $requestParameters['submitCustomerHealth'] == 1) {
+
+            $this->setNextStepAsCurrent();
+            $this->setComplete(true);
+        }
+
         $this->setTitle(
             $this->getTranslator()->trans(
                 'Health Information',
