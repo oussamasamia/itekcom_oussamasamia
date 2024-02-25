@@ -1,15 +1,15 @@
 {extends file='checkout/_partials/steps/checkout-step.tpl'}
 {block name='step_content'}
-    <form action="" id="customerhealth-form"
+    <form action="{$link->getModuleLink('itekcom_oussamasamia', 'healthform')}" id="customerhealth-form"
           class="js-customer-form"
           method="post">
 
         <div class="form-group row ">
-            <label class="col-md-3 form-control-label required" for="field-firstname">
+            <label class="col-md-3 form-control-label required" for="field-doctor">
                 Doctor
             </label>
             <div class="col-md-6 js-input-column">
-                <input id="field-firstname" class="form-control" name="doctor" type="text" required="required">
+                <input id="field-doctor" class="form-control" name="doctor" type="text" required="required">
             </div>
         </div>
 
