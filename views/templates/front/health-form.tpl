@@ -6,7 +6,7 @@
 
         <div class="form-group row ">
             <label class="col-md-3 form-control-label required" for="field-doctor">
-                Doctor
+                {l s='Doctor' mod='itekcom_oussamasamia'}
             </label>
             <div class="col-md-6 js-input-column">
                 <input id="field-doctor" class="form-control" name="doctor" type="text" required="required">

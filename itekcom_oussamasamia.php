@@ -52,7 +52,7 @@ class Itekcom_oussamasamia extends Module
 
         parent::__construct();
 
-        $this->displayName = $this->l('Itekcom Test');
+        $this->displayName = $this->l('Itekcom Module');
         $this->description = $this->l('Itekcom module description');
 
         $this->ps_versions_compliancy = array('min' => '1.6', 'max' => '8.1.5');
