@@ -64,8 +64,17 @@ class Itekcom_oussamasamia extends Module
      */
     public function install()
     {
+
+        // Add the "doctor" field to the ps_customer table
+        $sql = 'ALTER TABLE `' . _DB_PREFIX_ . 'customer` ADD COLUMN `doctor` VARCHAR(255) DEFAULT NULL';
+        if (!Db::getInstance()->execute($sql)) {
+            return false; // Return false if the query execution fails
+        }
+
         Configuration::updateValue('ITEKCOM_OUSSAMASAMIA_LIVE_MODE', false);
 
+
+        // Register hooks
         return parent::install() &&
             $this->registerHook('header') &&
             $this->registerHook('displayBackOfficeHeader');
@@ -73,6 +82,12 @@ class Itekcom_oussamasamia extends Module
 
     public function uninstall()
     {
+        // Remove the "doctor" field from the ps_customer table
+        $sql = 'ALTER TABLE `' . _DB_PREFIX_ . 'customer` DROP COLUMN `doctor`';
+        if (!Db::getInstance()->execute($sql)) {
+            return false; // Return false if the query execution fails
+        }
+
         Configuration::deleteByName('ITEKCOM_OUSSAMASAMIA_LIVE_MODE');
 
         return parent::uninstall();
