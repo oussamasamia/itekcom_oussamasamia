@@ -1,4 +1,4 @@
-# Itekcom Test
+# Module Name: itekcom_oussamasamia
 
 ## Description
 The Itekcom Test module extends the checkout process in PrestaShop by adding a health step. This step allows users to input their personal doctor information, which is then stored in the database.
