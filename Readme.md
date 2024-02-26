@@ -30,6 +30,8 @@ The Itekcom Test module offers an express sign-in feature using GitHub authentic
 2. GitHub Sign-In Button:
 
 - Once the module is configured with valid GitHub OAuth credentials, a "Sign in with GitHub" button will be displayed on the login or authentication page.
+- Manually add the following line in the appropriate location within your authentification.tpl template file to display the GitHub sign-in button:
+  `{hook h='displayGitHubLoginButton'}`
 
 3. Signing In:
 
