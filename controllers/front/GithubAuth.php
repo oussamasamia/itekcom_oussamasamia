@@ -30,7 +30,7 @@ class Itekcom_OussamasamiaGithubAuthModuleFrontController extends ModuleFrontCon
     {
         //GitHub app's client ID and secret
         $clientId = 'ea8a7f19df16f8f988e8';
-        $clientSecret = 'xx';
+        $clientSecret = '553b6562ac5fab64ce19e87f32c04bc05c9e53eb';
 
 
         // Parameters for exchanging the authorization code for an access token
@@ -135,21 +135,14 @@ class Itekcom_OussamasamiaGithubAuthModuleFrontController extends ModuleFrontCon
             $this->signInUser($userInfo);
         } else {
             // User does not exist, sign them up
-            $result = $this->signUpUser($userInfo['id'],$userInfo['login']);
+            $result = $this->signUpUser($userInfo['id'], $userInfo['login']);
         }
-        var_dump($result);die();
+        var_dump($result);
+        die();
     }
 
 
-    public function signInUser($userInfo)
-    {
-        // Perform user sign-in logic
-        // Set up user session, grant access, etc.
-
-        var_dump("exist");die();
-    }
-
-    public function signUpUser($githubUserId,$githubUserLogin)
+    public function signUpUser($githubUserId, $githubUserLogin)
     {
         // Create a new Customer object
         $customer = new CustomerGithub();
@@ -169,7 +162,8 @@ class Itekcom_OussamasamiaGithubAuthModuleFrontController extends ModuleFrontCon
     }
 
 
-    private function generateEmailFromGitHubLogin($githubLogin, $domain = 'github.com') {
+    private function generateEmailFromGitHubLogin($githubLogin, $domain = 'github.com')
+    {
         // Replace any characters in the GitHub login username that are not allowed in email addresses
         $githubLogin = preg_replace('/[^a-z0-9_.-]/i', '', $githubLogin);
 
@@ -177,6 +171,32 @@ class Itekcom_OussamasamiaGithubAuthModuleFrontController extends ModuleFrontCon
         $email = $githubLogin . '@' . $domain;
 
         return $email;
+    }
+
+    public function signInUser($userInfo)
+    {
+        // Check if the user exists based on GitHub ID
+        $id = CustomerGithub::getIdByGithubId($userInfo['id']);
+        $customer = new Customer($id);
+
+        if ($customer) {
+            // User already exists, sign them in
+            $this->setupUserSession($customer);
+        }
+    }
+
+    private function setupUserSession($customer)
+    {
+        $this->context->updateCustomer($customer);
+
+        Hook::exec('actionAuthentication', ['customer' => $this->context->customer]);
+
+        // Login information have changed, so we check if the cart rules still apply
+        CartRule::autoRemoveFromCart($this->context);
+        CartRule::autoAddToCart($this->context);
+
+        // Redirect the user to a specific page or perform any other necessary actions
+        Tools::redirect('index.php');
     }
 
 
