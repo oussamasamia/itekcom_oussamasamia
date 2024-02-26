@@ -41,7 +41,7 @@ class Itekcom_oussamasamia extends Module
     {
         $this->name = 'itekcom_oussamasamia';
         $this->tab = 'administration';
-        $this->version = '1.0.0';
+        $this->version = '2.0.0';
         $this->author = 'Oussama SAMIA';
         $this->need_instance = 1;
 
@@ -78,7 +78,8 @@ class Itekcom_oussamasamia extends Module
         }
 
 
-        Configuration::updateValue('ITEKCOM_OUSSAMASAMIA_LIVE_MODE', false);
+        Configuration::updateValue('ITEKCOM_OUSSAMASAMIA_CLIENT_ID', "");
+        Configuration::updateValue('ITEKCOM_OUSSAMASAMIA_CLIENT_SECRET', "");
 
 
         // Register hooks
@@ -102,7 +103,8 @@ class Itekcom_oussamasamia extends Module
             return false; // Return false if the query execution fails
         }
 
-        Configuration::deleteByName('ITEKCOM_OUSSAMASAMIA_LIVE_MODE');
+        Configuration::deleteByName('ITEKCOM_OUSSAMASAMIA_CLIENT_ID');
+        Configuration::deleteByName('ITEKCOM_OUSSAMASAMIA_CLIENT_SECRET');
 
         return parent::uninstall();
     }
@@ -205,25 +207,6 @@ class Itekcom_oussamasamia extends Module
                 ),
                 'input' => array(
                     array(
-                        'type' => 'switch',
-                        'label' => $this->l('Live mode'),
-                        'name' => 'ITEKCOM_OUSSAMASAMIA_LIVE_MODE',
-                        'is_bool' => true,
-                        'desc' => $this->l('Use this module in live mode'),
-                        'values' => array(
-                            array(
-                                'id' => 'active_on',
-                                'value' => true,
-                                'label' => $this->l('Enabled')
-                            ),
-                            array(
-                                'id' => 'active_off',
-                                'value' => false,
-                                'label' => $this->l('Disabled')
-                            )
-                        ),
-                    ),
-                    array(
                         'col' => 3,
                         'type' => 'text',
                         'name' => 'ITEKCOM_OUSSAMASAMIA_CLIENT_ID',
@@ -249,7 +232,6 @@ class Itekcom_oussamasamia extends Module
     protected function getConfigFormValues()
     {
         return array(
-            'ITEKCOM_OUSSAMASAMIA_LIVE_MODE' => Configuration::get('ITEKCOM_OUSSAMASAMIA_LIVE_MODE', true),
             'ITEKCOM_OUSSAMASAMIA_CLIENT_ID' => Configuration::get('ITEKCOM_OUSSAMASAMIA_CLIENT_ID', null),
             'ITEKCOM_OUSSAMASAMIA_CLIENT_SECRET' => Configuration::get('ITEKCOM_OUSSAMASAMIA_CLIENT_SECRET', null),
         );

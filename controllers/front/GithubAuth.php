@@ -33,6 +33,12 @@ class Itekcom_OussamasamiaGithubAuthModuleFrontController extends ModuleFrontCon
         $clientSecret = Configuration::get('ITEKCOM_OUSSAMASAMIA_CLIENT_SECRET');
 
 
+        // Check if client ID or client secret is empty
+        if (empty($clientId) || empty($clientSecret)) {
+            $errorMessage = "Undefined client ID or Client Secret";
+            die($errorMessage);
+        }
+
 
 
         // Parameters for exchanging the authorization code for an access token
