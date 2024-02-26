@@ -143,10 +143,8 @@ class Itekcom_OussamasamiaGithubAuthModuleFrontController extends ModuleFrontCon
             $this->signInUser($userInfo);
         } else {
             // User does not exist, sign them up
-            $result = $this->signUpUser($userInfo['id'], $userInfo['login']);
+            $this->signUpUser($userInfo['id'], $userInfo['login']);
         }
-        var_dump($result);
-        die();
     }
 
 
