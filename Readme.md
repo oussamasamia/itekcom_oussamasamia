@@ -3,6 +3,7 @@
 
 ## Description
 The Itekcom Test module enhances the checkout process in PrestaShop by adding a health step. During this step, users can input their personal doctor information, which is then stored in the database. Additionally, the module provides a convenient option for users to sign in with GitHub. If the user already exists, they will be signed in automatically. If not, the module will handle the sign-up process and then sign in the user.
+
 ## Compatibility
 - PrestaShop version: 1.6 to 8.1.4
 
@@ -73,5 +74,6 @@ For any issues or questions regarding the Itekcom module, please contact our sup
 ## Credits
 - Developed by Oussama SAMIA
 - Logo design by Itekcom
-- Test given by Itekcom
+
+###### Itekcom assigned me this task as part of their evaluation process.
 
