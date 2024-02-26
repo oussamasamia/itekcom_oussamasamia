@@ -13,6 +13,8 @@ The Itekcom Test module enhances the checkout process in PrestaShop by adding a 
 4. Install the module through the PrestaShop back office by navigating to Modules and Services > Modules and Services. Search for "itekcom_oussamasamia" and click "Install".
 
 ## Usage (Health Information)
+![Module Configuration](https://raw.githubusercontent.com/oussamasamia/itekcom_oussamasamia/v2.0/views/img/healthstep-checkout.png)
+
 1. After installation, navigate to the checkout process in your PrestaShop store.
 2. Proceed through the checkout steps until you reach the health step.
 3. In the health step, you will find a form where you can input your personal doctor information.
@@ -20,6 +22,11 @@ The Itekcom Test module enhances the checkout process in PrestaShop by adding a 
 
 ## Usage (Express sign-in Github)
 The Itekcom Test module offers an express sign-in feature using GitHub authentication. This allows users to quickly sign in to their accounts using their GitHub credentials. Here's how to use it:
+
+![GitHub Sign In](https://raw.githubusercontent.com/oussamasamia/itekcom_oussamasamia/v2.0/views/img/github-signin.png)
+
+![Module Configuration](https://raw.githubusercontent.com/oussamasamia/itekcom_oussamasamia/v2.0/views/img/module-github-config.png)
+
 
 1. Module Configuration:
 
@@ -66,3 +73,5 @@ For any issues or questions regarding the Itekcom module, please contact our sup
 ## Credits
 - Developed by Oussama SAMIA
 - Logo design by Itekcom
+- Test given by Itekcom
+
