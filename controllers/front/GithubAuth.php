@@ -1,5 +1,7 @@
 <?php
+require_once(_PS_MODULE_DIR_ . 'itekcom_oussamasamia/classes/CustomerGithub.php');
 
+use \Itekcom_Oussamasamia\CustomerGithub;
 
 class Itekcom_OussamasamiaGithubAuthModuleFrontController extends ModuleFrontController
 {
@@ -28,7 +30,7 @@ class Itekcom_OussamasamiaGithubAuthModuleFrontController extends ModuleFrontCon
     {
         //GitHub app's client ID and secret
         $clientId = 'ea8a7f19df16f8f988e8';
-        $clientSecret = 'xxx';
+        $clientSecret = 'xx';
 
 
         // Parameters for exchanging the authorization code for an access token
@@ -47,9 +49,9 @@ class Itekcom_OussamasamiaGithubAuthModuleFrontController extends ModuleFrontCon
         // Process the response to extract the access token
         $accessToken = $this->parseAccessToken($response);
 
-        if ($accessToken){
+        if ($accessToken) {
             $data = $this->getUserInfo($accessToken);
-            var_dump($data);die();
+            $this->signInOrSignUpUser($data);
         }
 
     }
@@ -122,7 +124,60 @@ class Itekcom_OussamasamiaGithubAuthModuleFrontController extends ModuleFrontCon
     }
 
 
+    public function signInOrSignUpUser($userInfo)
+    {
+        // Check if the user exists in your system
+        $userExists = CustomerGithub::checkIfUserExists($userInfo['id']);
 
+
+        if ($userExists) {
+            // User exists, sign them in
+            $this->signInUser($userInfo);
+        } else {
+            // User does not exist, sign them up
+            $result = $this->signUpUser($userInfo['id'],$userInfo['login']);
+        }
+        var_dump($result);die();
+    }
+
+
+    public function signInUser($userInfo)
+    {
+        // Perform user sign-in logic
+        // Set up user session, grant access, etc.
+
+        var_dump("exist");die();
+    }
+
+    public function signUpUser($githubUserId,$githubUserLogin)
+    {
+        // Create a new Customer object
+        $customer = new CustomerGithub();
+        // Set the customer's data
+        $customer->email = $this->generateEmailFromGitHubLogin($githubUserLogin);
+        $customer->firstname = $githubUserLogin;
+        $customer->lastname = $githubUserLogin;
+        $customer->github_id = $githubUserId;
+        $customer->passwd = Tools::encrypt(Tools::passwdGen()); // Generate a random password
+
+        // Save the customer
+        if ($customer->save()) {
+            return $customer; // Return the newly created customer object
+        } else {
+            return false; // Return false if the customer creation fails
+        }
+    }
+
+
+    private function generateEmailFromGitHubLogin($githubLogin, $domain = 'github.com') {
+        // Replace any characters in the GitHub login username that are not allowed in email addresses
+        $githubLogin = preg_replace('/[^a-z0-9_.-]/i', '', $githubLogin);
+
+        // Generate the email address by combining the GitHub login username with the domain
+        $email = $githubLogin . '@' . $domain;
+
+        return $email;
+    }
 
 
 }
