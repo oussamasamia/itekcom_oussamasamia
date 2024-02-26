@@ -71,6 +71,15 @@ class Itekcom_oussamasamia extends Module
             return false; // Return false if the query execution fails
         }
 
+        // Add the "github_id" field to the ps_customer table
+        $sql2 = 'ALTER TABLE `' . _DB_PREFIX_ . 'customer` ADD COLUMN `github_id` INT(11) DEFAULT NULL';
+        if (!Db::getInstance()->execute($sql2)) {
+            return false; // Return false if the query execution fails
+        }
+
+
+
+
         Configuration::updateValue('ITEKCOM_OUSSAMASAMIA_LIVE_MODE', false);
 
 
@@ -86,6 +95,12 @@ class Itekcom_oussamasamia extends Module
         // Remove the "doctor" field from the ps_customer table
         $sql = 'ALTER TABLE `' . _DB_PREFIX_ . 'customer` DROP COLUMN `doctor`';
         if (!Db::getInstance()->execute($sql)) {
+            return false; // Return false if the query execution fails
+        }
+
+        // Remove the "github_id" field from the ps_customer table
+        $sql2 = 'ALTER TABLE `' . _DB_PREFIX_ . 'customer` DROP COLUMN `github_id`';
+        if (!Db::getInstance()->execute($sql2)) {
             return false; // Return false if the query execution fails
         }
 
