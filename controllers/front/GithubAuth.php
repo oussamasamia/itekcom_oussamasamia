@@ -29,8 +29,10 @@ class Itekcom_OussamasamiaGithubAuthModuleFrontController extends ModuleFrontCon
     public function exchangeCodeToAccessToken($code)
     {
         //GitHub app's client ID and secret
-        $clientId = 'ea8a7f19df16f8f988e8';
-        $clientSecret = '553b6562ac5fab64ce19e87f32c04bc05c9e53eb';
+        $clientId = Configuration::get('ITEKCOM_OUSSAMASAMIA_CLIENT_ID');
+        $clientSecret = Configuration::get('ITEKCOM_OUSSAMASAMIA_CLIENT_SECRET');
+
+
 
 
         // Parameters for exchanging the authorization code for an access token

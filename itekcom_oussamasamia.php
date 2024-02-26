@@ -78,8 +78,6 @@ class Itekcom_oussamasamia extends Module
         }
 
 
-
-
         Configuration::updateValue('ITEKCOM_OUSSAMASAMIA_LIVE_MODE', false);
 
 
@@ -112,7 +110,7 @@ class Itekcom_oussamasamia extends Module
 
     public function initiateGitHubAuthentication()
     {
-        $clientId = 'ea8a7f19df16f8f988e8';
+        $clientId = Configuration::get('ITEKCOM_OUSSAMASAMIA_CLIENT_ID');
         $state = bin2hex(random_bytes(16)); // Generate a random state
 
         $authorizationUrl = 'https://github.com/login/oauth/authorize' .
@@ -228,15 +226,13 @@ class Itekcom_oussamasamia extends Module
                     array(
                         'col' => 3,
                         'type' => 'text',
-                        'prefix' => '<i class="icon icon-envelope"></i>',
-                        'desc' => $this->l('Enter a valid email address'),
-                        'name' => 'ITEKCOM_OUSSAMASAMIA_ACCOUNT_EMAIL',
-                        'label' => $this->l('Email'),
+                        'name' => 'ITEKCOM_OUSSAMASAMIA_CLIENT_ID',
+                        'label' => $this->l('Client ID'),
                     ),
                     array(
                         'type' => 'password',
-                        'name' => 'ITEKCOM_OUSSAMASAMIA_ACCOUNT_PASSWORD',
-                        'label' => $this->l('Password'),
+                        'name' => 'ITEKCOM_OUSSAMASAMIA_CLIENT_SECRET',
+                        'label' => $this->l('Client Secret'),
                     ),
                 ),
                 'submit' => array(
@@ -246,6 +242,7 @@ class Itekcom_oussamasamia extends Module
         );
     }
 
+
     /**
      * Set values for the inputs.
      */
@@ -253,10 +250,11 @@ class Itekcom_oussamasamia extends Module
     {
         return array(
             'ITEKCOM_OUSSAMASAMIA_LIVE_MODE' => Configuration::get('ITEKCOM_OUSSAMASAMIA_LIVE_MODE', true),
-            'ITEKCOM_OUSSAMASAMIA_ACCOUNT_EMAIL' => Configuration::get('ITEKCOM_OUSSAMASAMIA_ACCOUNT_EMAIL', 'contact@prestashop.com'),
-            'ITEKCOM_OUSSAMASAMIA_ACCOUNT_PASSWORD' => Configuration::get('ITEKCOM_OUSSAMASAMIA_ACCOUNT_PASSWORD', null),
+            'ITEKCOM_OUSSAMASAMIA_CLIENT_ID' => Configuration::get('ITEKCOM_OUSSAMASAMIA_CLIENT_ID', null),
+            'ITEKCOM_OUSSAMASAMIA_CLIENT_SECRET' => Configuration::get('ITEKCOM_OUSSAMASAMIA_CLIENT_SECRET', null),
         );
     }
+
 
     /**
      * Save form data.
