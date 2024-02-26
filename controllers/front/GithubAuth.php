@@ -195,7 +195,7 @@ class Itekcom_OussamasamiaGithubAuthModuleFrontController extends ModuleFrontCon
         CartRule::autoRemoveFromCart($this->context);
         CartRule::autoAddToCart($this->context);
 
-        // Redirect the user to a specific page or perform any other necessary actions
+        // Redirect the user to home page
         Tools::redirect('index.php');
     }
 
