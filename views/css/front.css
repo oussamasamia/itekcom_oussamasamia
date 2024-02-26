@@ -25,3 +25,21 @@
 * Don't forget to prefix your containers with your own identifier
 * to avoid any conflicts with others containers.
 */
+
+.github-login {
+    text-align: center;
+    margin: 10px;
+}
+
+.github-login a {
+    display: inline-block;
+    padding: 10px 20px; /* Adjust padding as needed */
+    border-radius: 2px;
+    background-color: black;
+    color: white;
+    text-decoration: none; /* Remove underline */
+}
+
+.github-login a:hover {
+    background-color: #333; /* Darken background on hover if desired */
+}
